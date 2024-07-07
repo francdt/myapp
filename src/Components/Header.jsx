@@ -1,9 +1,8 @@
-import { useLocation, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../Context/userContext";
 function Header (){
     const { user } = useContext(UserContext);
-    const location = useLocation();
     return (<header>
         <nav>
             <ul>

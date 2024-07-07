@@ -2,9 +2,11 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Input from "./Form/input";
 import InputPassword from "./Form/inputPassword"
+import Title from "./Title";
 
 function Login(){
     const [user, setUser] = useState({})
+    const title = Title
 
     const changeInput = (event) => {
         let clonedUser = { ...user};
@@ -45,6 +47,8 @@ function Login(){
         alert(alertMessage);
         return false;
     }
+
+    title("Iniciar sesión");
 
     return (
         <>

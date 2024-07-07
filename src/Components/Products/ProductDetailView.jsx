@@ -2,9 +2,11 @@
 import { useState, useEffect } from "react";
 import { useParams} from "react-router-dom";
 import ProductDetail from "./ProductDetail";
+import Title from "../Title";
 function ProductDetailView(){
     const [product, setProduct] = useState(null);
     const params = useParams();
+    const title = Title
 
     useEffect( () => {
         loadProduct();
@@ -26,7 +28,6 @@ function ProductDetailView(){
                 res.json()
                 .then( data => {
                     let productId = Number(params.productId);
-                    console.log(productId, params);
                     let filteredProduct = null;
                     if (productId){
                         filteredProduct = data.find( ele => { return  (Number(ele?.id || -1) === productId) });
@@ -44,6 +45,9 @@ function ProductDetailView(){
             })
         }, 1000)
     }
+
+    let productTitle = product && product.id ? `Producto - ${product.name} - #${product.id}` : `Producto - `;  
+    title(productTitle);
 
     return (<>
         <h2>Detalles del producto</h2><button onClick={loadProduct}>Recargar producto</button>

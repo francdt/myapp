@@ -2,9 +2,11 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Input from "./Form/input";
 import InputPassword from "./Form/inputPassword"
+import Title from "./Title";
 
 function Register(){
     const [user, setUser] = useState({})
+    const title = Title
 
     const changeInput = (event) => {
         let clonedUser = { ...user};
@@ -22,6 +24,8 @@ function Register(){
         alert(alertMessage);
         return false;
     }
+
+    title("Registrarse")
 
     return (
         <>
