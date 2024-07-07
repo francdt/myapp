@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import Input from "./Form/input";
 import InputPassword from "./Form/inputPassword"
 
@@ -34,6 +35,7 @@ function Register(){
                 <InputPassword inputName="confirmPassword" id="confirmPassword" translation={"Confirmar contraseña"} onChange={changeInput} value={user?.confirmPassword}/>
                 <input type="submit"/>
             </form>
+            <p>o <NavLink to={"/login"}>iniciar sesión</NavLink></p>
         </>
     )
 }

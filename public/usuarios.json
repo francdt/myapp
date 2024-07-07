@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "firstname": "John",
+        "lastname": "Doe",
+        "email": "john.doe@example.com",
+        "phone": "123-456-7890",
+        "password": "password123"
+    },
+    {
+        "id": 2,
+        "firstname": "Jane",
+        "lastname": "Smith",
+        "email": "jane.smith@example.com",
+        "phone": "987-654-3210",
+        "password": "password123"
+    },
+    {
+        "id": 3,
+        "firstname": "Alice",
+        "lastname": "Johnson",
+        "email": "alice.johnson@example.com",
+        "phone": "555-123-4567",
+        "password": "password123"
+    },
+    {
+        "id": 4,
+        "firstname": "Bob",
+        "lastname": "Williams",
+        "email": "bob.williams@example.com",
+        "phone": "444-987-6543",
+        "password": "password123"
+    },
+    {
+        "id": 5,
+        "firstname": "Charlie",
+        "lastname": "Brown",
+        "email": "charlie.brown@example.com",
+        "phone": "333-456-7890",
+        "password": "password123"
+    },
+    {
+        "id": 6,
+        "firstname": "David",
+        "lastname": "Davis",
+        "email": "david.davis@example.com",
+        "phone": "222-123-4567",
+        "password": "password123"
+    },
+    {
+        "id": 7,
+        "firstname": "Emily",
+        "lastname": "Miller",
+        "email": "emily.miller@example.com",
+        "phone": "111-987-6543",
+        "password": "password123"
+    },
+    {
+        "id": 8,
+        "firstname": "Frank",
+        "lastname": "Wilson",
+        "email": "frank.wilson@example.com",
+        "phone": "666-456-7890",
+        "password": "password123"
+    },
+    {
+        "id": 9,
+        "firstname": "Grace",
+        "lastname": "Moore",
+        "email": "grace.moore@example.com",
+        "phone": "777-123-4567",
+        "password": "password123"
+    },
+    {
+        "id": 10,
+        "firstname": "Hannah",
+        "lastname": "Taylor",
+        "email": "hannah.taylor@example.com",
+        "phone": "888-987-6543",
+        "password": "password123"
+    }
+]
