@@ -28,11 +28,11 @@ function ProductDetailView(){
                 res.json()
                 .then( data => {
                     let productId = Number(params.productId);
-                    let filteredProduct = null;
+                    let filteredProduct = {};
                     if (productId){
                         filteredProduct = data.find( ele => { return  (Number(ele?.id || -1) === productId) });
-                        filteredProduct = filteredProduct === undefined ? {} : filteredProduct
                     } 
+                    filteredProduct = filteredProduct === undefined ? {} : filteredProduct
                     setProduct(filteredProduct)
                 })
                 .catch((err) => { 
