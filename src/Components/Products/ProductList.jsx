@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import Title from "../Title";
+import { getProducts } from "../../firebase/Products";
 function ProductList(){
     const [products, setProducts] = useState(null);
     const title = Title;
@@ -14,18 +15,13 @@ function ProductList(){
             setProducts([])
             setTimeout(function (){
                 setProducts(null)
-                fetch("/products.json").then( (res) =>{ if(res.ok){
-                    res.json()
-                    .then( data => {
-                        setProducts(data);
-                    })
-                    .catch(console.error);
-                } } ).catch(console.error)
+                getProducts().then(setProducts).catch(err => console.log("Error fetching products", err));
             }, 1000)
         }, 500)
     }
 
     title("Ver productos");
+    console.log(products)
 
     return (<>
         <h2>Productos principales</h2><button onClick={reloadProducts}>Recargar productos</button>

@@ -16,6 +16,7 @@ function ProductDetail({product, buyProduct = ()=>{}}){
             </>)
         : <p>Sin caracteristicas escenciales</p>) }
         <p>Precio: ${product.price}</p>
+        <p>SKU: {product.sku}</p>
         <p><button onClick={buyProduct}>Comprar</button></p>
     </div>)
 }

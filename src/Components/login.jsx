@@ -1,36 +1,33 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
+import { useState } from "react"; 
 import Input from "./Form/input";
 import InputPassword from "./Form/inputPassword"
 import Title from "./Title";
+import { auth } from "../firebase/firebaseconfig";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 function Login(){
-    const [user, setUser] = useState({})
+    const [loginUser, setUser] = useState({})
     const title = Title
+    const navigate = useNavigate();
 
     const changeInput = (event) => {
-        let clonedUser = { ...user};
+        let clonedUser = { ...loginUser};
         clonedUser[event.target.name] = event.target.value;
         setUser(clonedUser);
     }
 
     const fetchAccount = () => {
-        if (user.email && user.password){
-            fetch("/usuarios.json").then( (res) =>{ if(res.ok){
-                res.json()
-                .then( data => {
-                    let registeredUser = data.find( ele => (ele.password == user.password && ele.email == user.email));
-                    if (registeredUser){
-                        alert("Hacer el login para el usuario");
-                    } else {
-                        alert("Datos invalidos");
-                    }
-                })
-                .catch((err) => { 
-                    console.error(err);
-                })
-            }}).catch((err) => { 
-                console.error(err) ; 
+        if (loginUser.email && loginUser.password){
+            signInWithEmailAndPassword(auth, loginUser.email, loginUser.password).then(
+                (data)=> {
+                    console.log("datos correctos", data);
+                    
+                    navigate("/");
+                }
+            ).catch(err => {
+                console.log("Erro al querer iniciar sessión: ", err);
+                alert(err.message);
             })
         }
     }
@@ -38,13 +35,11 @@ function Login(){
     const submit = (event) =>{
         event.preventDefault();
         event.stopPropagation();
-        let alertMessage = "Los datos para ingreas son:";
-        if (Object.keys(user).length) {
+        if (Object.keys(loginUser).length) {
            fetchAccount();
         } else {
-            alertMessage = "No se ingresaron e-mail, ni contraseña."
+            alert( "No se ingresaron e-mail, ni contraseña.")
         }
-        alert(alertMessage);
         return false;
     }
 
@@ -54,8 +49,8 @@ function Login(){
         <>
             <h2>Ingresar</h2>
             <form onSubmit={submit}>
-                <Input inputName="email" id="email" translation={"E-mail"} onChange={changeInput} value={user?.email}/>
-                <InputPassword inputName="password" id="password" translation={"Contraseña"} onChange={changeInput} value={user?.password}/>
+                <Input inputName="email" id="email" translation={"E-mail"} onChange={changeInput} value={loginUser?.email}/>
+                <InputPassword inputName="password" id="password" translation={"Contraseña"} onChange={changeInput} value={loginUser?.password}/>
                 <input type="submit"/>
             </form>
             <p>o <NavLink to={"/register"}>registrarse</NavLink></p>

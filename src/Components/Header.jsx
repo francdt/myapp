@@ -1,6 +1,9 @@
 import {  NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../Context/userContext";
+import { auth } from "../firebase/firebaseconfig";
+import { signOut } from "firebase/auth";
+
 function Header (){
     const { user } = useContext(UserContext);
     return (<header>
@@ -13,10 +16,14 @@ function Header (){
 }
 
 function withSession(){
+    const logout = () => {
+        signOut(auth);
+    }
+
     return (
         <>
             {dashboard()}
-            <li className="float-right"><NavLink to="/logout">Cerrar sesión</NavLink></li>
+            <li className="float-right"><a onClick={logout}>Cerrar sesión</a></li>
         </>
     )
 }

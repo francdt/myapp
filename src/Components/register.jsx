@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import Input from "./Form/input";
 import InputPassword from "./Form/inputPassword"
 import Title from "./Title";
+import { auth } from "../firebase/firebaseconfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { addUser } from "../firebase/Users";
 
 function Register(){
     const [user, setUser] = useState({})
@@ -17,11 +20,22 @@ function Register(){
     const submit = (event) =>{
         event.preventDefault();
         event.stopPropagation();
-        let alertMessage = "Los datos del formulario son:";
-        for(let attr of Object.keys(user)){
-            alertMessage += `\n${attr}: ${user[attr]}` 
-        }
-        alert(alertMessage);
+        createUserWithEmailAndPassword(auth, user.email, user.password).then(
+            (data) => {
+                console.log(data);
+                let storeUserData = {
+                    uid: data.uid,
+                    email: user.email,
+                    phone: user.phone,
+                    lastname: user.lastname,
+                    firstname: user.firstname
+                    
+                }
+                addUser(storeUserData).then(console.log).catch(err => console.log("ERror al registrar el usuario a la base", err))
+            }
+        ).catch(err => {
+            console.log("Error al querer genera el suario", err.message)
+        })
         return false;
     }
 

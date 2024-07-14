@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams} from "react-router-dom";
 import ProductDetail from "./ProductDetail";
 import Title from "../Title";
+import { getProductById } from "../../firebase/Products";
 function ProductDetailView(){
     const [product, setProduct] = useState(null);
     const params = useParams();
@@ -24,26 +25,17 @@ function ProductDetailView(){
         setProduct(null);
         setTimeout(function (){
 
-            fetch("/products.json").then( (res) =>{ if(res.ok){
-                res.json()
-                .then( data => {
-                    let productId = Number(params.productId);
-                    let filteredProduct = {};
-                    if (productId){
-                        filteredProduct = data.find( ele => { return  (Number(ele?.id || -1) === productId) });
-                    } 
-                    filteredProduct = filteredProduct === undefined ? {} : filteredProduct
-                    setProduct(filteredProduct)
-                })
-                .catch((err) => { 
-                    console.error(err);
-                    setProduct({}) 
-                })
-            }}).catch((err) => { 
-                console.error(err) ; 
-                setProduct({})  
+            getProductById(params.productId)
+            .then( data => {
+                console.log(data);
+                let filteredProduct = data === undefined ? {} : data
+                setProduct(filteredProduct)
             })
-        }, 1000)
+            .catch((err) => { 
+                console.error(err);
+                setProduct({}) 
+            })
+        }, 1000 )
     }
 
     let productTitle = product && product.id ? `Producto - ${product.name} - #${product.id}` : `Producto - `;  
