@@ -7,25 +7,29 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Requires firebase:
+
+Requiere firebase:
     npm install firebase
-Requires dotenv
+Requiere dotenv:
     npm install dotenv
 
-Para agregar productos el mismo debe corresponder con el siguiente modelo>
-        {
-            "name": "string",
-            "description": "string",
-            "price": number,
-            "caracteristics": [
-                {
-                    id: number,
-                    name:"string"
-                }
-            ],
-            "category": "string",
-            "sku": "string"
-        },
+
+Para que la aplicación funcione deves agregar un .env en la raiz del proyecto.
+    copy .env.example .env
+Para agregar productos el mismo debe corresponder con el siguiente modelo:
+    {
+        "name": "string",
+        "description": "string",
+        "price": number,
+        "caracteristics": [
+            {
+                id: number,
+                name:"string"
+            }
+        ],
+        "category": "string",
+        "sku": "string"
+    },
 
 Se deja comentado dentro de App la ruta  /add/products
 Que genera algunos productos dentro de firebase store.
